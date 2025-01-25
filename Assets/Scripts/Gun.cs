@@ -17,18 +17,30 @@ public class Gun : MonoBehaviour
 
     private float LastShootTime;
 
+    public bool isRightHand;
 
     private void OnEnable()
     {
-        InputData.Instance.RightHandInputData.TriggerButtonPressed += Shoot;
+        InputData.Instance.RightHandInputData.TriggerButtonPressed += ShootRight;
+        InputData.Instance.LeftHandInputData.TriggerButtonPressed  += ShootLeft;
     }
 
     private void OnDisable()
     {
-        InputData.Instance.RightHandInputData.TriggerButtonPressed -= Shoot;
+        InputData.Instance.RightHandInputData.TriggerButtonPressed -= ShootRight;
+        InputData.Instance.LeftHandInputData.TriggerButtonPressed  -= ShootLeft;
     }
 
+    private void ShootRight()
+    {
+        if (isRightHand) Shoot();
+    }
 
+    private void ShootLeft()
+    {
+        if (!isRightHand) Shoot();
+
+    }
 
     public void Shoot()
     {
