@@ -28,7 +28,7 @@ public class Bubble : MonoBehaviour
         Destroy(gameObject, lifetime);
         audioSource = gameObject.AddComponent<AudioSource>();
 
-        if(butterflyBubble)
+        if (butterflyBubble)
             transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
 
         DontDestroyOnLoad(gameObject);
@@ -67,6 +67,15 @@ public class Bubble : MonoBehaviour
         {
             Butterfly.GoAway();
         }
+
+        TMPro.TextMeshProUGUI bubbleText = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+        if (bubbleText != null)
+        {
+            // Destroy text immediately
+            Destroy(bubbleText);
+        }
+
         meshRenderer.enabled = false;
         colliderBubble.enabled = false;
         Destroy(gameObject, timeToDestroy);

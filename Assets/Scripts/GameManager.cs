@@ -96,6 +96,11 @@ public class GameManager : MonoBehaviour
 
     void RestartGame()
     {
+        Invoke(nameof(ReloadScene), 2f);
+    }
+
+    void ReloadScene()
+    {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }
