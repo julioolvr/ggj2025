@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BubbleForest.unity
     guid: d098e92c0f01fbe4cac47dc76aa842eb
+  - enabled: 0
+    path: Assets/Scenes/Minimal.unity
+    guid: e5239c35e92e74bfa9d2dd04534e5ca4
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 2d78eaa9956fd644e88f2432274ed194,
       type: 2}

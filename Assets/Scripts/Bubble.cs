@@ -19,10 +19,13 @@ public class Bubble : MonoBehaviour
 
     public UnityEvent onBubblePopped;
     public UnityEvent onBubbleDestroyed;
+    public AudioClip[] popSounds;
+    private AudioSource audioSource;
 
     void Start()
     {
         Destroy(gameObject, lifetime);
+        audioSource = gameObject.AddComponent<AudioSource>();
 
         if (Butterfly)
         {
@@ -47,6 +50,7 @@ public class Bubble : MonoBehaviour
     public void PopBubble()
     {
         onBubblePopped.Invoke();
+        PlayRandomPopSound();
 
         // Instantiate the pop effect at the bubble's position and rotation
         GameObject popEffect = Instantiate(popEffectPrefab, transform.position, transform.rotation);
@@ -85,6 +89,15 @@ public class Bubble : MonoBehaviour
         else
         {
             PopBubble();
+        }
+    }
+
+    private void PlayRandomPopSound()
+    {
+        if (popSounds.Length > 0)
+        {
+            AudioClip randomClip = popSounds[UnityEngine.Random.Range(0, popSounds.Length)];
+            audioSource.PlayOneShot(randomClip);
         }
     }
 }

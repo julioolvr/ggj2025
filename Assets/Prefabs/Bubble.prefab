@@ -135,6 +135,17 @@ MonoBehaviour:
   onBubbleDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  popSounds:
+  - {fileID: 8300000, guid: b38ec952077b0460aa856eb58a3aa992, type: 3}
+  - {fileID: 8300000, guid: 19cad2b35fc8548478bc5aa84eb304ea, type: 3}
+  - {fileID: 8300000, guid: b5b136e936366429cbc6ba0ebc44021e, type: 3}
+  - {fileID: 8300000, guid: ba0295ae6d76f4a7c890eed337661ee4, type: 3}
+  - {fileID: 8300000, guid: 28071f335f20f4428b1096046a71197f, type: 3}
+  - {fileID: 8300000, guid: cdd8e7ac020234ae5900b1e35dc5a286, type: 3}
+  - {fileID: 8300000, guid: 3399868c33aa14500b8016037482a7af, type: 3}
+  - {fileID: 8300000, guid: 4497170b547a24842b51e09725fc8553, type: 3}
+  - {fileID: 8300000, guid: 0ec232b7fa6f14b3fb8eab6d1117e35e, type: 3}
+  - {fileID: 8300000, guid: e4671674681da4699a10f7667dc528b2, type: 3}
 --- !u!1001 &496913442572712393
 PrefabInstance:
   m_ObjectHideFlags: 0
