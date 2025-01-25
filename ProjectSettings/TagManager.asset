@@ -10,6 +10,7 @@ TagManager:
   - PassThroughButton
   - LocoButton
   - LocoText
+  - BubbleDestroyer
   layers:
   - Default
   - TransparentFX

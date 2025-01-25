@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     public int timeLimit = 60;
     public UnityEvent onGameStart;
     public UnityEvent onGameOver;
+    public GameObject bubbleRestartPrefab;
+    public GameObject playerPlatform;
 
     public void StartGame()
     {
@@ -78,7 +81,14 @@ public class GameManager : MonoBehaviour
         onGameOver?.Invoke();
 
         // TODO: Remove all bubbles, or disable weapon?
-        // Show score and restart bubble
+        GameObject restartBubble = Instantiate(bubbleRestartPrefab, playerPlatform.transform.position + new Vector3(0, 2, 10), Quaternion.identity);
+        restartBubble.GetComponent<Bubble>().onBubblePopped.AddListener(RestartGame);
+    }
+
+    void RestartGame()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 
     private void HandleBubbleSpawned(Bubble bubble)
