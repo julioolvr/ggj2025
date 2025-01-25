@@ -14,6 +14,9 @@ public class Spawner : MonoBehaviour
 
     public UnityEvent<Bubble> OnBubbleSpawned;
 
+    float progress = 0;
+    public float difficultyMultiplier = 3;
+
     public enum DifficultyLevel
     {
         Easy,
@@ -50,7 +53,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(spawnDelay / (1 + 3 * difficultyMultiplier));
 
             // Randomize position within the box collider, keeping the same Y position
             Vector3 spawnPosition = GetRandomPosition();
@@ -86,5 +89,10 @@ public class Spawner : MonoBehaviour
     {
         difficulty = newDifficulty;
         SetDifficultyParameters();
+    }
+
+    public void SetProgress(float newProgress)
+    {
+        progress = newProgress;
     }
 }
