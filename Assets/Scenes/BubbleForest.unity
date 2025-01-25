@@ -1359,6 +1359,7 @@ MonoBehaviour:
   OnBubbleSpawned:
     m_PersistentCalls:
       m_Calls: []
+  difficultyMultiplier: 3
 --- !u!4 &1700163812
 Transform:
   m_ObjectHideFlags: 0
