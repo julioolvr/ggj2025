@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnDelay / (1 + 3 * difficultyMultiplier));
+            yield return new WaitForSeconds(spawnDelay / (1 + progress * difficultyMultiplier));
 
             // Randomize position within the box collider, keeping the same Y position
             Vector3 spawnPosition = GetRandomPosition();

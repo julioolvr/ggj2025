@@ -18,10 +18,12 @@ public class Bubble : MonoBehaviour
     public Collider colliderBubble;
 
     public UnityEvent onBubblePopped;
+    public UnityEvent onBubbleSplit;
     public UnityEvent onBubbleDestroyed;
     public AudioClip[] popSounds;
     private AudioSource audioSource;
     public bool butterflyBubble = true;
+    public GameObject bubblePrefab;
 
     void Start()
     {
@@ -46,12 +48,12 @@ public class Bubble : MonoBehaviour
 
     void OnMouseDown()
     {
-        PopBubble();
+        // TODO: Right click vs left click
+        PopBubble(true);
     }
 
-    public void PopBubble()
+    public void PopBubble(bool split)
     {
-        onBubblePopped.Invoke();
         PlayRandomPopSound();
 
         // Instantiate the pop effect at the bubble's position and rotation
@@ -64,11 +66,6 @@ public class Bubble : MonoBehaviour
         Destroy(popEffect, 1f);
         Debug.Log("DESACTIVO MESH");
 
-        if (Butterfly)
-        {
-            Butterfly.GoAway();
-        }
-
         TMPro.TextMeshProUGUI bubbleText = GetComponentInChildren<TMPro.TextMeshProUGUI>();
 
         if (bubbleText != null)
@@ -77,12 +74,40 @@ public class Bubble : MonoBehaviour
             Destroy(bubbleText);
         }
 
+        if (split)
+        {
+            GameObject bubbleLeft = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+            bubbleLeft.transform.localScale = transform.localScale * 0.5f;
+            bubbleLeft.GetComponent<Rigidbody>().velocity = Vector3.left * 2f;
+
+
+            GameObject bubbleRight = Instantiate(bubblePrefab, transform.position, Quaternion.identity);
+            bubbleRight.transform.localScale = transform.localScale * 0.5f;
+            bubbleRight.GetComponent<Rigidbody>().velocity = Vector3.right * 2f;
+
+            onBubbleSplit.Invoke();
+
+            if (Butterfly)
+            {
+                Destroy(Butterfly);
+            }
+
+            Destroy(gameObject, timeToDestroy);
+        }
+        else
+        {
+            onBubblePopped.Invoke();
+
+            if (Butterfly)
+            {
+                Butterfly.GoAway();
+            }
+
+        }
+
         meshRenderer.enabled = false;
         colliderBubble.enabled = false;
         Destroy(gameObject, timeToDestroy);
-
-        // Destroy the bubble itself
-        //Destroy(gameObject);
     }
 
     public void DestroyBubble()
@@ -99,7 +124,7 @@ public class Bubble : MonoBehaviour
         }
         else
         {
-            PopBubble();
+            PopBubble(false);
         }
     }
 
@@ -111,4 +136,6 @@ public class Bubble : MonoBehaviour
             audioSource.PlayOneShot(randomClip);
         }
     }
+
+
 }

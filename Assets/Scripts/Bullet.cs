@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         Bubble bubble = other.GetComponent<Bubble>();
         if (bubble != null)
         {
-            bubble.PopBubble(); // Call the bubble's pop effect
+            bubble.PopBubble(false); // Call the bubble's pop effect
 
             Destroy(gameObject); // Destroy the bullet
         }

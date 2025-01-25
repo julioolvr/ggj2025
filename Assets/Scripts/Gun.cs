@@ -21,8 +21,8 @@ public class Gun : MonoBehaviour
     public AudioClip[] shootingSounds;
     private AudioSource audioSource;
 
-    public float vibrationDuration = .25f;  // Duración de la vibración en segundos
-    public float vibrationStrength = .5f;  // Intensidad de la vibración (0 a 1)
+    public float vibrationDuration = .25f;  // Duraciï¿½n de la vibraciï¿½n en segundos
+    public float vibrationStrength = .5f;  // Intensidad de la vibraciï¿½n (0 a 1)
     void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
@@ -93,7 +93,7 @@ public class Gun : MonoBehaviour
                 Bubble bubble = hit.collider.GetComponent<Bubble>();
                 if (bubble != null)
                 {
-                    bubble.PopBubble(); // Call your bubble's pop effect
+                    bubble.PopBubble(false); // Call your bubble's pop effect
                 }
             }
         }
@@ -146,6 +146,6 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        OVRInput.SetControllerVibration(0, 0, controller);  // Detener vibración
+        OVRInput.SetControllerVibration(0, 0, controller);  // Detener vibraciï¿½n
     }
 }
