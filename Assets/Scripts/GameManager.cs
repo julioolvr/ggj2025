@@ -67,6 +67,11 @@ public class GameManager : MonoBehaviour
         score += 1;
     }
 
+    private void DecreaseScore()
+    {
+        score -= 1;
+    }
+
     private void FinishGame()
     {
         isPlaying = false;
@@ -80,5 +85,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"A bubble was spawned at {bubble.transform.position}");
         bubble.onBubblePopped.AddListener(IncreaseScore);
+        bubble.onBubbleDestroyed.AddListener(DecreaseScore);
     }
 }
