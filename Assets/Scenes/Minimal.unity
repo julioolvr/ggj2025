@@ -2022,9 +2022,20 @@ PrefabInstance:
       objectReference: {fileID: 420926634}
     - target: {fileID: 5297783584008001297, guid: 98822b51f5a2947629ead5a5f4792a78,
         type: 3}
+      propertyPath: playerPlatform
+      value: 
+      objectReference: {fileID: 1912819103}
+    - target: {fileID: 5297783584008001297, guid: 98822b51f5a2947629ead5a5f4792a78,
+        type: 3}
       propertyPath: hudTimePlayedText
       value: 
       objectReference: {fileID: 1263027782}
+    - target: {fileID: 5297783584008001297, guid: 98822b51f5a2947629ead5a5f4792a78,
+        type: 3}
+      propertyPath: bubbleRestartPrefab
+      value: 
+      objectReference: {fileID: 5176486170115110035, guid: 8f72c53dee78d4c28942f08e22f100d9,
+        type: 3}
     - target: {fileID: 5297783584008001297, guid: 98822b51f5a2947629ead5a5f4792a78,
         type: 3}
       propertyPath: onGameOver.m_PersistentCalls.m_Calls.Array.size
@@ -2396,6 +2407,7 @@ MonoBehaviour:
   bubbleLayer:
     serializedVersion: 2
     m_Bits: 0
+  isRightHand: 0
 --- !u!1 &1901395831
 GameObject:
   m_ObjectHideFlags: 0
