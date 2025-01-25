@@ -42,9 +42,7 @@ public class Gun : MonoBehaviour
                 TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
 
                 StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
-                
-                hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-
+               
                 LastShootTime = Time.time;
 
             }

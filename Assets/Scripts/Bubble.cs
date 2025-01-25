@@ -9,12 +9,18 @@ public class Bubble : MonoBehaviour
     public float sidewaysSpeed = 1f;
     public float lifetime = 5f;
     public float amplitude = 1.0f;
+    public float timeToDestroy = 0.5f;
     public GameObject popEffectPrefab;
     float timer = 0;
+    public Butterfly Butterfly;
+    public MeshRenderer meshRenderer;
+    public Collider colliderBubble;
 
     void Start()
     {
         Destroy(gameObject, lifetime);
+        Butterfly.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
+
     }
 
     // Update is called once per frame
@@ -41,8 +47,18 @@ public class Bubble : MonoBehaviour
 
         // Destroy the effect after a short time
         Destroy(popEffect, 1f);
+        Debug.Log("DESACTIVO MESH");
+        Butterfly.GoAway();
+        meshRenderer.enabled = false;
+        colliderBubble.enabled = false;
+        Destroy(gameObject, timeToDestroy);
 
         // Destroy the bubble itself
-        Destroy(gameObject);
+        //Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        PopBubble();
     }
 }

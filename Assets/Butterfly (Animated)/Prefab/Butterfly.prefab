@@ -447,7 +447,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 455730}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.000031221287, y: 90, z: -69.99999}
 --- !u!33 &3313848
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -625,9 +625,10 @@ Animation:
   m_GameObject: {fileID: 138252}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: bf1b95fba89fb2e438e098ef4361e389, type: 3}
+  m_Animation: {fileID: 7400000, guid: c42f43f9481962740b9671207378cd12, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: bf1b95fba89fb2e438e098ef4361e389, type: 3}
+  - {fileID: 7400000, guid: c42f43f9481962740b9671207378cd12, type: 2}
+  - {fileID: 7400000, guid: ff2c5ca1cc8b6b144b2560e2cc328fac, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -747,7 +748,7 @@ Transform:
   - {fileID: 438454}
   - {fileID: 493954}
   m_Father: {fileID: 421922}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -40, y: 0, z: -90}
 --- !u!1 &144926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,7 +1613,7 @@ Transform:
   - {fileID: 480818}
   - {fileID: 478954}
   m_Father: {fileID: 421922}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: -90}
 --- !u!1 &186998
 GameObject:
   m_ObjectHideFlags: 0
