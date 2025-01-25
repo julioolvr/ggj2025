@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bubble : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Bubble : MonoBehaviour
     public Butterfly Butterfly;
     public MeshRenderer meshRenderer;
     public Collider colliderBubble;
+
+    public UnityEvent onBubblePopped;
 
     void Start()
     {
@@ -39,6 +42,8 @@ public class Bubble : MonoBehaviour
 
     public void PopBubble()
     {
+        onBubblePopped.Invoke();
+
         // Instantiate the pop effect at the bubble's position and rotation
         GameObject popEffect = Instantiate(popEffectPrefab, transform.position, transform.rotation);
 

@@ -11,11 +11,22 @@ public class GameManager : MonoBehaviour
     int score = 0;
     [SerializeField] private TextMeshProUGUI hudTimePlayedText;
     [SerializeField] private TextMeshProUGUI hudScoreText;
+    public Spawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    void OnEnable()
+    {
+        spawner.OnBubbleSpawned.AddListener(HandleBubbleSpawned);
+    }
+
+    void OnDisable()
+    {
+        spawner.OnBubbleSpawned.RemoveListener(HandleBubbleSpawned);
     }
 
     // Update is called once per frame
@@ -40,5 +51,17 @@ public class GameManager : MonoBehaviour
     string ScoreText()
     {
         return $"Score: {score}";
+    }
+
+    private void IncreaseScore()
+    {
+        score += 1;
+    }
+
+    private void HandleBubbleSpawned(Bubble bubble)
+    {
+        Debug.Log($"A bubble was spawned at {bubble.transform.position}");
+        bubble.onBubblePopped.AddListener(IncreaseScore);
+        // Additional logic for the spawned bubble (e.g., tracking, tagging, etc.)
     }
 }

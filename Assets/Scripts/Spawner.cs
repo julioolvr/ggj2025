@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Spawner : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Spawner : MonoBehaviour
 
     private float spawnDelay;
     private Vector2 bubbleSizeRange;
+
+    public UnityEvent<Bubble> OnBubbleSpawned;
 
     public enum DifficultyLevel
     {
@@ -54,6 +57,8 @@ public class Spawner : MonoBehaviour
 
             // Instantiate bubble
             GameObject bubble = Instantiate(bubblePrefab, spawnPosition, Quaternion.identity);
+
+            OnBubbleSpawned?.Invoke(bubble.GetComponent<Bubble>());
 
             // Randomize bubble size
             float randomSize = Random.Range(bubbleSizeRange.x, bubbleSizeRange.y);
