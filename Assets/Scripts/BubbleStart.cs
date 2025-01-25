@@ -1,20 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BubbleStart : MonoBehaviour
 {
     public GameObject Spawner;
 
+    public UnityEvent onBubblePopped;
+
     private void OnTriggerEnter(Collider other)
     {
-        Spawner.SetActive(true);
+        onBubblePopped?.Invoke();
+
+        if (Spawner)
+        {
+            Spawner.SetActive(true);
+        }
         Destroy(transform.gameObject);
     }
 
     void OnMouseDown()
     {
-        Spawner.SetActive(true);
+        onBubblePopped?.Invoke();
+
+        if (Spawner)
+        {
+            Spawner.SetActive(true);
+        }
+
         Destroy(transform.gameObject);
     }
 }
