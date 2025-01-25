@@ -85,6 +85,11 @@ public class GameManager : MonoBehaviour
             Destroy(bubble);
         }
 
+        Invoke(nameof(RestartBubble), 2f);
+    }
+
+    void RestartBubble()
+    {
         GameObject restartBubble = Instantiate(bubbleRestartPrefab, playerPlatform.transform.position, Quaternion.identity);
         restartBubble.GetComponent<Bubble>().onBubblePopped.AddListener(RestartGame);
     }

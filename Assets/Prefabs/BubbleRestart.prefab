@@ -269,6 +269,8 @@ MonoBehaviour:
   onBubbleDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  popSounds: []
+  butterflyBubble: 0
 --- !u!1 &6749531870895884288
 GameObject:
   m_ObjectHideFlags: 0

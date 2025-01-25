@@ -3546,7 +3546,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.00439
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1843496065986860187, guid: 47940d61bde47254a8de63d02de782fc,
@@ -3597,6 +3598,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9226cd7bea1134c808ae2e03e585b4c7, type: 3}
   - {fileID: 8300000, guid: a58c5ecc9bd5740dc82e7c6d06fa1b24, type: 3}
   - {fileID: 8300000, guid: 555fd030ace39433194a948348eda135, type: 3}
+  vibrationDuration: 0.5
+  vibrationStrength: 1
 --- !u!4 &5091451048190759931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1640335461711885542, guid: 47940d61bde47254a8de63d02de782fc,

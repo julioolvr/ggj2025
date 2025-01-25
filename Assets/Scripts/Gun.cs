@@ -21,6 +21,8 @@ public class Gun : MonoBehaviour
     public AudioClip[] shootingSounds;
     private AudioSource audioSource;
 
+    public float vibrationDuration = .25f;  // Duración de la vibración en segundos
+    public float vibrationStrength = .5f;  // Intensidad de la vibración (0 a 1)
     void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
@@ -40,12 +42,20 @@ public class Gun : MonoBehaviour
 
     private void ShootRight()
     {
-        if (isRightHand) Shoot();
+        if (isRightHand)
+        {
+            Shoot();
+            StartCoroutine(HapticPulse(vibrationDuration, vibrationStrength, OVRInput.Controller.RTouch));
+        }
     }
 
     private void ShootLeft()
     {
-        if (!isRightHand) Shoot();
+        if (!isRightHand)
+        {
+            Shoot();
+            StartCoroutine(HapticPulse(vibrationDuration, vibrationStrength, OVRInput.Controller.LTouch));
+        }
 
     }
 
@@ -89,6 +99,8 @@ public class Gun : MonoBehaviour
         }
     }
 
+
+
     private IEnumerator SpawnTrail(TrailRenderer Trail, Vector3 HitPoint, Vector3 HitNormal, bool MadeImpact)
     {
         Vector3 startPosition = Trail.transform.position;
@@ -120,5 +132,20 @@ public class Gun : MonoBehaviour
             AudioClip randomClip = shootingSounds[UnityEngine.Random.Range(0, shootingSounds.Length)];
             audioSource.PlayOneShot(randomClip);
         }
+    }
+
+
+    IEnumerator HapticPulse(float duration, float strength, OVRInput.Controller controller)
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            OVRInput.SetControllerVibration(strength, strength, controller);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        OVRInput.SetControllerVibration(0, 0, controller);  // Detener vibración
     }
 }

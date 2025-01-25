@@ -21,16 +21,17 @@ public class Bubble : MonoBehaviour
     public UnityEvent onBubbleDestroyed;
     public AudioClip[] popSounds;
     private AudioSource audioSource;
+    public bool butterflyBubble = true;
 
     void Start()
     {
         Destroy(gameObject, lifetime);
         audioSource = gameObject.AddComponent<AudioSource>();
 
-        if (Butterfly)
-        {
-            Butterfly.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
-        }
+        if(butterflyBubble)
+            transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
