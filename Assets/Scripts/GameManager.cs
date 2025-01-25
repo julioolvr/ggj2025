@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    // TODO: Start as false and change it when shooting at "Start"
-    bool isPlaying = true;
+    bool isPlaying = false;
     float timePlayed = 0f;
     int score = 0;
     [SerializeField] private TextMeshProUGUI hudTimePlayedText;
     [SerializeField] private TextMeshProUGUI hudScoreText;
     public Spawner spawner;
+    public GameObject water;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
-
+        isPlaying = true;
+        water.SetActive(true);
     }
 
     void OnEnable()

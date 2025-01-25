@@ -1,29 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BubbleStart : MonoBehaviour
 {
     public GameObject Spawner;
 
     public float floatSpeed = 1f;  // Velocidad de movimiento vertical
-    public float floatHeight = 0.5f;  // Altura máxima a la que sube y baja
+    public float floatHeight = 0.5f;  // Altura mï¿½xima a la que sube y baja
     private Vector3 startPos;
+
+    public UnityEvent onBubblePopped;
 
     void Start()
     {
-        startPos = transform.position;  // Guardamos la posición inicial
+        startPos = transform.position;  // Guardamos la posiciï¿½n inicial
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Spawner.SetActive(true);
+        onBubblePopped?.Invoke();
+
+        if (Spawner)
+        {
+            Spawner.SetActive(true);
+        }
         Destroy(transform.gameObject);
     }
 
     void OnMouseDown()
     {
-        Spawner.SetActive(true);
+        onBubblePopped?.Invoke();
+
+        if (Spawner)
+        {
+            Spawner.SetActive(true);
+        }
+
         Destroy(transform.gameObject);
     }
 
