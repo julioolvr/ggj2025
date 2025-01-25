@@ -3506,6 +3506,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.355
       objectReference: {fileID: 0}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9226cd7bea1134c808ae2e03e585b4c7, type: 3}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: a58c5ecc9bd5740dc82e7c6d06fa1b24, type: 3}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 555fd030ace39433194a948348eda135, type: 3}
     - target: {fileID: 5590513643715035922, guid: 47940d61bde47254a8de63d02de782fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3573,6 +3593,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   isRightHand: 0
+  shootingSounds:
+  - {fileID: 8300000, guid: 9226cd7bea1134c808ae2e03e585b4c7, type: 3}
+  - {fileID: 8300000, guid: a58c5ecc9bd5740dc82e7c6d06fa1b24, type: 3}
+  - {fileID: 8300000, guid: 555fd030ace39433194a948348eda135, type: 3}
 --- !u!4 &5091451048190759931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1640335461711885542, guid: 47940d61bde47254a8de63d02de782fc,
@@ -3969,6 +3993,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.355
       objectReference: {fileID: 0}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9226cd7bea1134c808ae2e03e585b4c7, type: 3}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: a58c5ecc9bd5740dc82e7c6d06fa1b24, type: 3}
+    - target: {fileID: 3421966452641764943, guid: 47940d61bde47254a8de63d02de782fc,
+        type: 3}
+      propertyPath: shootingSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 555fd030ace39433194a948348eda135, type: 3}
     - target: {fileID: 5590513643715035922, guid: 47940d61bde47254a8de63d02de782fc,
         type: 3}
       propertyPath: m_LocalPosition.x

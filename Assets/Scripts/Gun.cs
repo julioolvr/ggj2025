@@ -18,17 +18,24 @@ public class Gun : MonoBehaviour
     private float LastShootTime;
 
     public bool isRightHand;
+    public AudioClip[] shootingSounds;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     private void OnEnable()
     {
         InputData.Instance.RightHandInputData.TriggerButtonPressed += ShootRight;
-        InputData.Instance.LeftHandInputData.TriggerButtonPressed  += ShootLeft;
+        InputData.Instance.LeftHandInputData.TriggerButtonPressed += ShootLeft;
     }
 
     private void OnDisable()
     {
         InputData.Instance.RightHandInputData.TriggerButtonPressed -= ShootRight;
-        InputData.Instance.LeftHandInputData.TriggerButtonPressed  -= ShootLeft;
+        InputData.Instance.LeftHandInputData.TriggerButtonPressed -= ShootLeft;
     }
 
     private void ShootRight()
@@ -47,6 +54,7 @@ public class Gun : MonoBehaviour
         if (LastShootTime + ShootDelay < Time.time)
         {
             Vector3 direction = -transform.right;
+            PlayRandomShootingSound();
 
             if (Physics.Raycast(BulletSpawnPoint.position, direction, out RaycastHit hit, float.MaxValue, Mask))
             {
@@ -54,7 +62,7 @@ public class Gun : MonoBehaviour
                 TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
 
                 StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
-               
+
                 LastShootTime = Time.time;
 
             }
@@ -105,6 +113,12 @@ public class Gun : MonoBehaviour
         Destroy(Trail.gameObject, Trail.time);
     }
 
-
-
+    private void PlayRandomShootingSound()
+    {
+        if (shootingSounds.Length > 0)
+        {
+            AudioClip randomClip = shootingSounds[UnityEngine.Random.Range(0, shootingSounds.Length)];
+            audioSource.PlayOneShot(randomClip);
+        }
+    }
 }
