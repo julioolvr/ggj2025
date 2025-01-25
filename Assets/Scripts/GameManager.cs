@@ -12,13 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hudTimePlayedText;
     [SerializeField] private TextMeshProUGUI hudScoreText;
     public Spawner spawner;
-    public GameObject water;
     public int timeLimit = 60;
+    public UnityEvent onGameStart;
+    public UnityEvent onGameOver;
 
     public void StartGame()
     {
         isPlaying = true;
-        water.SetActive(true);
+        onGameStart?.Invoke();
     }
 
     void OnEnable()
@@ -69,7 +70,7 @@ public class GameManager : MonoBehaviour
     private void FinishGame()
     {
         isPlaying = false;
-        water.SetActive(false);
+        onGameOver?.Invoke();
 
         // TODO: Remove all bubbles, or disable weapon?
         // Show score and restart bubble
