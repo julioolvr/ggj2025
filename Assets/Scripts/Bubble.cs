@@ -18,6 +18,7 @@ public class Bubble : MonoBehaviour
     public Collider colliderBubble;
 
     public UnityEvent onBubblePopped;
+    public UnityEvent onBubbleDestroyed;
 
     void Start()
     {
@@ -62,8 +63,21 @@ public class Bubble : MonoBehaviour
         //Destroy(gameObject);
     }
 
+    public void DestroyBubble()
+    {
+        onBubbleDestroyed.Invoke();
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        PopBubble();
+        if (other.CompareTag("BubbleDestroyer"))
+        {
+            DestroyBubble();
+        }
+        else
+        {
+            PopBubble();
+        }
     }
 }
