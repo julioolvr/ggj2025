@@ -28,6 +28,11 @@ public class Bubble : MonoBehaviour
 
     void OnMouseDown()
     {
+        PopBubble();
+    }
+
+    public void PopBubble()
+    {
         // Instantiate the pop effect at the bubble's position and rotation
         GameObject popEffect = Instantiate(popEffectPrefab, transform.position, transform.rotation);
 

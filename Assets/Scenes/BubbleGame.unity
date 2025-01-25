@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11786278, g: 0.06513216, b: 0.40100032, a: 1}
+  m_IndirectSpecularColor: {r: 0.1217311, g: 0.06510217, b: 0.40098318, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1118,6 +1118,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubble
       objectReference: {fileID: 0}
+    - target: {fileID: 1929380107435586663, guid: 4b1bec244696043888c1715fa0bc48f1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3182426843925399129, guid: 4b1bec244696043888c1715fa0bc48f1,
         type: 3}
       propertyPath: floatSpeed
@@ -1142,7 +1147,7 @@ PrefabInstance:
     - target: {fileID: 3641728817896247426, guid: 4b1bec244696043888c1715fa0bc48f1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.46
+      value: 3.45
       objectReference: {fileID: 0}
     - target: {fileID: 3641728817896247426, guid: 4b1bec244696043888c1715fa0bc48f1,
         type: 3}
@@ -1649,6 +1654,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   BulletSpeed: 100
+  bubbleLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1901395831
 GameObject:
   m_ObjectHideFlags: 0

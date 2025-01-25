@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private LayerMask Mask;
 
     [SerializeField] private float BulletSpeed = 100;
+    [SerializeField] public LayerMask bubbleLayer;
 
     private float LastShootTime;
 
@@ -27,7 +28,7 @@ public class Gun : MonoBehaviour
         InputData.Instance.RightHandInputData.TriggerButtonPressed -= Shoot;
     }
 
-   
+
 
     public void Shoot()
     {
@@ -53,6 +54,16 @@ public class Gun : MonoBehaviour
                 StartCoroutine(SpawnTrail(trail, BulletSpawnPoint.position + direction * 100, Vector3.zero, false));
 
                 LastShootTime = Time.time;
+            }
+
+            if (Physics.Raycast(BulletSpawnPoint.position, direction, out RaycastHit bubbleHit, Mathf.Infinity, bubbleLayer))
+            {
+                // Trigger the bubble's pop method if hit
+                Bubble bubble = hit.collider.GetComponent<Bubble>();
+                if (bubble != null)
+                {
+                    bubble.PopBubble(); // Call your bubble's pop effect
+                }
             }
         }
     }
@@ -82,5 +93,5 @@ public class Gun : MonoBehaviour
     }
 
 
-    
+
 }
