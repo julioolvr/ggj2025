@@ -11,6 +11,7 @@ TagManager:
   - LocoButton
   - LocoText
   - BubbleDestroyer
+  - GameBubble
   layers:
   - Default
   - TransparentFX

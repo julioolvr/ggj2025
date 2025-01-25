@@ -80,7 +80,11 @@ public class GameManager : MonoBehaviour
         isPlaying = false;
         onGameOver?.Invoke();
 
-        // TODO: Remove all bubbles, or disable weapon?
+        foreach (GameObject bubble in GameObject.FindGameObjectsWithTag("GameBubble"))
+        {
+            Destroy(bubble);
+        }
+
         GameObject restartBubble = Instantiate(bubbleRestartPrefab, playerPlatform.transform.position + new Vector3(0, 2, 10), Quaternion.identity);
         restartBubble.GetComponent<Bubble>().onBubblePopped.AddListener(RestartGame);
     }

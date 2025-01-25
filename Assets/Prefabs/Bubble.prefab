@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3182426843925399129}
   m_Layer: 6
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: GameBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,12 @@ MonoBehaviour:
   Butterfly: {fileID: 1306835151387512810}
   meshRenderer: {fileID: 2185456105145993655}
   colliderBubble: {fileID: 5713180272106129221}
+  onBubblePopped:
+    m_PersistentCalls:
+      m_Calls: []
+  onBubbleDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &496913442572712393
 PrefabInstance:
   m_ObjectHideFlags: 0
