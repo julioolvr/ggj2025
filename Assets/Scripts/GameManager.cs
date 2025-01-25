@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hudScoreText;
     public Spawner spawner;
     public GameObject water;
+    public int timeLimit = 60;
 
     public void StartGame()
     {
@@ -38,13 +39,19 @@ public class GameManager : MonoBehaviour
             timePlayed += Time.deltaTime;
             hudTimePlayedText.text = PlayTimeText();
             hudScoreText.text = ScoreText();
+
+            if (timePlayed >= timeLimit)
+            {
+                FinishGame();
+            }
         }
     }
 
     string PlayTimeText()
     {
-        int minutes = (int)(timePlayed / 60);
-        int seconds = (int)(timePlayed % 60);
+        float remainingSeconds = timeLimit - timePlayed;
+        int minutes = (int)(remainingSeconds / 60);
+        int seconds = (int)(remainingSeconds % 60);
 
         return $"{minutes}:{seconds:D2}";
     }
@@ -59,10 +66,18 @@ public class GameManager : MonoBehaviour
         score += 1;
     }
 
+    private void FinishGame()
+    {
+        isPlaying = false;
+        water.SetActive(false);
+
+        // TODO: Remove all bubbles, or disable weapon?
+        // Show score and restart bubble
+    }
+
     private void HandleBubbleSpawned(Bubble bubble)
     {
         Debug.Log($"A bubble was spawned at {bubble.transform.position}");
         bubble.onBubblePopped.AddListener(IncreaseScore);
-        // Additional logic for the spawned bubble (e.g., tracking, tagging, etc.)
     }
 }
