@@ -1393,6 +1393,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742294337498508925, guid: 7bb6e19e537033347a6d1f593d05283b,
         type: 3}
+      propertyPath: Mask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742294337498508925, guid: 7bb6e19e537033347a6d1f593d05283b,
+        type: 3}
       propertyPath: vibrationDuration
       value: 0.2
       objectReference: {fileID: 0}
@@ -1450,6 +1455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826004842794016495, guid: 7bb6e19e537033347a6d1f593d05283b,
+        type: 3}
+      propertyPath: Mask.m_Bits
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 6826004842794016495, guid: 7bb6e19e537033347a6d1f593d05283b,
         type: 3}
