@@ -27,12 +27,16 @@ public class Bubble : MonoBehaviour
     {
         Destroy(gameObject, lifetime);
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.spatialBlend = 1;
+        audioSource.spatialize = true;
+        audioSource.spatialBlend = .8f;
 
         if (butterflyBubble)
             transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
 
         DontDestroyOnLoad(gameObject);
+
+        floatSpeed = UnityEngine.Random.Range(floatSpeed, floatSpeed * 2f);
+
     }
 
     // Update is called once per frame

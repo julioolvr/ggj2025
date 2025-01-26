@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     string ScoreText()
     {
-        return $"Score: {score}";
+        return ""+score;
     }
 
     private void IncreaseScore()

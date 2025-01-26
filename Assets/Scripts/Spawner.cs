@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnDelay / (1 + 3 * difficultyMultiplier));
+            yield return new WaitForSeconds(spawnDelay / (1 + difficultyMultiplier * progress));
 
             // Randomize position within the box collider, keeping the same Y position
             Vector3 spawnPosition = GetRandomPosition();
@@ -79,9 +79,8 @@ public class Spawner : MonoBehaviour
 
         float randomX = Random.Range(bounds.min.x, bounds.max.x);
         float randomZ = Random.Range(bounds.min.z, bounds.max.z);
-        float fixedY = spawnArea.bounds.center.y;  // Keep Y constant
-
-        return new Vector3(randomX, fixedY, randomZ);
+        float randomY = Random.Range(bounds.min.y, bounds.max.y);
+        return new Vector3(randomX, randomY, randomZ);
     }
 
     // Call this method to change difficulty dynamically
