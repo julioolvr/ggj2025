@@ -68,6 +68,10 @@ public class GameManager : MonoBehaviour
             spawner.SetProgress(Mathf.Pow(timePlayed / timeLimit, 2));
             //spawner.SetProgress(timePlayed / timeLimit);
         }
+        else
+        {
+            hudScoreText.text = ScoreText() + "/" + Bubble.contButterflies;
+        }
     }
 
     bool once = true;
@@ -139,6 +143,8 @@ public class GameManager : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+        Bubble.contButterflies = 0;
+
     }
 
     private void HandleBubbleSpawned(Bubble bubble)

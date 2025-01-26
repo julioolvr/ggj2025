@@ -23,6 +23,8 @@ public class Bubble : MonoBehaviour
     public AudioSource audioSource;
     public bool butterflyBubble = true;
 
+    public static int contButterflies = 0;
+
     void Start()
     {
         StartCoroutine(DestroyBubbleAnim());
@@ -31,7 +33,10 @@ public class Bubble : MonoBehaviour
         //audioSource.spatialBlend = .8f;
 
         if (butterflyBubble)
+        {
             transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
+            contButterflies++;
+        }
 
         DontDestroyOnLoad(gameObject);
 
