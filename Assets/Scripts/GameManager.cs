@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -19,6 +21,10 @@ public class GameManager : MonoBehaviour
     public GameObject bubbleRestartPrefab;
     public GameObject playerPlatform;
 
+    public AudioSource audioSource;
+    public AudioClip tictac;
+    public AudioClip EndGameAudio;
+
     public void StartGame()
     {
         isPlaying = true;
@@ -35,13 +41,23 @@ public class GameManager : MonoBehaviour
         spawner.OnBubbleSpawned.RemoveListener(HandleBubbleSpawned);
     }
 
+    float elapsed = 0f;
+
     // Update is called once per frame
     void Update()
     {
+        elapsed += Time.deltaTime;
+        bool newSecond = false;
+        if(elapsed>= 1)
+        {
+            elapsed = 0f;
+            newSecond = true;
+        }
+
         if (isPlaying)
         {
             timePlayed += Time.deltaTime;
-            hudTimePlayedText.text = PlayTimeText();
+            hudTimePlayedText.text = PlayTimeText(newSecond);
             hudScoreText.text = ScoreText();
 
             if (timePlayed >= timeLimit)
@@ -49,17 +65,32 @@ public class GameManager : MonoBehaviour
                 FinishGame();
             }
 
-            spawner.SetProgress(timePlayed / timeLimit);
+            spawner.SetProgress(Mathf.Pow(timePlayed / timeLimit, 2));
+            //spawner.SetProgress(timePlayed / timeLimit);
         }
     }
 
-    string PlayTimeText()
+    bool once = true;
+    string PlayTimeText(bool newSecond)
     {
         float remainingSeconds = timeLimit - timePlayed;
         int minutes = (int)(remainingSeconds / 60);
         int seconds = (int)(remainingSeconds % 60);
 
-        return $"{minutes}:{seconds:D2}";
+        if(newSecond && minutes == 0 && (seconds == 1 || seconds == 2 || seconds == 3 || seconds == 4 || seconds == 5))
+        {
+            audioSource.PlayOneShot(tictac);
+        }
+
+        if(once && newSecond && minutes == 0 && seconds == 0)
+        {
+            audioSource.PlayOneShot(EndGameAudio);
+            once = false;
+        }
+
+        string dev = $"{minutes}:{seconds:D2}";
+
+        return dev;
     }
 
     string ScoreText()
@@ -96,8 +127,11 @@ public class GameManager : MonoBehaviour
         restartBubble.GetComponent<Bubble>().onBubblePopped.AddListener(RestartGame);
     }
 
+
+    public AudioManager audioManager;
     void RestartGame()
     {
+        audioManager.FadeOut();
         Invoke(nameof(ReloadScene), 2f);
     }
 
@@ -109,7 +143,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleBubbleSpawned(Bubble bubble)
     {
-        Debug.Log($"A bubble was spawned at {bubble.transform.position}");
+        //Debug.Log($"A bubble was spawned at {bubble.transform.position}");
         bubble.onBubblePopped.AddListener(IncreaseScore);
         bubble.onBubbleDestroyed.AddListener(DecreaseScore);
     }

@@ -12,6 +12,9 @@ TagManager:
   - LocoText
   - BubbleDestroyer
   - GameBubble
+  - lb_bird
+  - lb_groundTarget
+  - lb_perchTarget
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - Water
   - UI
   - Bubble
-  - 
+  - Ground
   - 
   - 
   - 

@@ -10,7 +10,6 @@ public class Butterfly : MonoBehaviour
 
     public void GoAway()
     {
-        Debug.Log("GO AWAY");
         animationCmp.clip = clipGoAway;
         animationCmp.Play();
     }

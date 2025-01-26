@@ -18,8 +18,12 @@ public class BubbleStart : MonoBehaviour
         startPos = transform.position;  // Guardamos la posici�n inicial
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("lb_bird")) return;
+
+
         onBubblePopped?.Invoke();
 
         if (Spawner)

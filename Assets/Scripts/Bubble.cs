@@ -20,15 +20,15 @@ public class Bubble : MonoBehaviour
     public UnityEvent onBubblePopped;
     public UnityEvent onBubbleDestroyed;
     public AudioClip[] popSounds;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     public bool butterflyBubble = true;
 
     void Start()
     {
-        Destroy(gameObject, lifetime);
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.spatialize = true;
-        audioSource.spatialBlend = .8f;
+        StartCoroutine(DestroyBubbleAnim());
+        //audioSource = gameObject.AddComponent<AudioSource>();
+        //audioSource.spatialize = true;
+        //audioSource.spatialBlend = .8f;
 
         if (butterflyBubble)
             transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
@@ -66,7 +66,6 @@ public class Bubble : MonoBehaviour
 
         // Destroy the effect after a short time
         Destroy(popEffect, 1f);
-        Debug.Log("DESACTIVO MESH");
 
         if (Butterfly)
         {
@@ -89,6 +88,26 @@ public class Bubble : MonoBehaviour
         //Destroy(gameObject);
     }
 
+    IEnumerator DestroyBubbleAnim()
+    {
+        yield return new WaitForSeconds(lifetime);
+
+        float duration = 3;
+        Vector3 initialScale = gameObject.transform.localScale;
+        Vector3 targetScale = Vector3.zero;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            gameObject.transform.localScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        gameObject.transform.localScale = targetScale;
+        Destroy(gameObject);
+    }
+
     public void DestroyBubble()
     {
         onBubbleDestroyed.Invoke();
@@ -97,6 +116,8 @@ public class Bubble : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("lb_bird")) return;
+
         if (other.CompareTag("BubbleDestroyer"))
         {
             DestroyBubble();
